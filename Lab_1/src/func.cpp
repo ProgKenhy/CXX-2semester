@@ -1,6 +1,9 @@
-#include "func.hpp"
+#include <func.hpp>
 
-int sum(int a, int b)
+namespace ac
 {
-	return a + b;
+	int sum(int a, int b)
+	{
+		return a + b;
+	}
 }
