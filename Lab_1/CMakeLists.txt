@@ -11,6 +11,7 @@ include_directories("inc")
 add_executable("${PROJECT_NAME}" main.cpp inc/func.hpp src/func.cpp)
 #add_definitions(-DRESOURCES_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/file/\")
 configure_file(file/run.txt file/run.txt COPYONLY)
+configure_file(file/run.txt Debug/file/run.txt COPYONLY)
 #file(COPY "file/run.txt" DESTINATION "file/")
 #add_custom_command(
  #   TARGET Lab_1 POST_BUILD

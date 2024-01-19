@@ -16,6 +16,8 @@ int main()
 		out.close();
 	}
 	else
-		std::cout << ("File is not open!");
+		std::cout << ("File is not open!") << std::endl;
+	std::cout << std::endl;
+	system("pause");
 	return 0;
 }
