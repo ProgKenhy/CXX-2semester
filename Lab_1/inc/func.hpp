@@ -1,9 +1,9 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <chrono>
+#include <string>
 
 namespace ac
 {
-	int sum(int a, int b);
+
+	void appendTimeToFile(const std::string &filename);
+
 }
