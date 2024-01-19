@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDART_REQUIRED TRUE)
 include_directories("inc")
 add_executable("${PROJECT_NAME}" main.cpp inc/func.hpp src/func.cpp)
 #add_definitions(-DRESOURCES_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/file/\")
-configure_file(file/run.txt ${CMAKE_CURRENT_BINARY_DIR}/file/run.txt COPYONLY)
+configure_file(file/run.txt file/run.txt COPYONLY)
+#file(COPY "file/run.txt" DESTINATION "file/")
 #add_custom_command(
  #   TARGET Lab_1 POST_BUILD
   #  COMMAND ${CMAKE_COMMAND} -E copy

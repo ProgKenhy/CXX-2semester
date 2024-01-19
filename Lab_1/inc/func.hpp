@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <fstream>
 
 namespace ac
 {
-
-	void appendTimeToFile(const std::string &filename);
+	int getLastNumber(std::fstream &file_read);
+	std::string currentDateTime();
 
 }
