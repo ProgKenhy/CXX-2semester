@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDART_REQUIRED TRUE)
 
 include_directories("inc")
+
 add_executable("${PROJECT_NAME}" main.cpp inc/func.hpp src/func.cpp)
 #configure_file(file/run.txt file/run.txt COPYONLY)
 
