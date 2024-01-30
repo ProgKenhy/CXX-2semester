@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDART_REQUIRED TRUE)
 
 include_directories("inc")
 
-add_executable("${PROJECT_NAME}" main.cpp inc/func.hpp src/func.cpp)
+add_executable("${PROJECT_NAME}" main.cpp inc/Parallelogram.hpp src/Parallelogram.cpp)
 #configure_file(file/run.txt file/run.txt COPYONLY)
 
 
