@@ -23,8 +23,8 @@ namespace ac
 			int r = rand() % 100 + 1;
 			int x = rand() % (m_width - 2 * r) + r;
 			int y = rand() % (m_height - 2 * r) + r;
-			int vx = rand() % 3;
-			int vy = rand() % 3;
+			int vx = rand() % 150+50;
+			int vy = rand() % 150+50;
 			m_c[i].Setup(x, y, r, vx, vy);
 			for (int j = 0; j < i; j++)
 			{
