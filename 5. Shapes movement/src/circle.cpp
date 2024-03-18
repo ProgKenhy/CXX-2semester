@@ -41,7 +41,7 @@ namespace ac
 		{
 			float offset = m_r + r2 - distance;
 			float directionX = (x2 - m_x) / distance;
-			float directionY = (x2 - m_x) / distance;
+			float directionY = (y2 - m_y) / distance;
 			c2.m_x += directionX * offset;
 			c2.m_y += directionY * offset;
 			return true;
