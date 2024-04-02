@@ -13,11 +13,30 @@ namespace ac
 		m_window.create(sf::VideoMode(m_width, m_height), m_capture);
 	}
 
-	void Game::Setup(int n)
+	bool Game::Setup(int n)
 	{
+
 		m_n = n;
 		srand(time(0));
 		m_c = new Circle[m_n];
+
+		if (!m_textureBackground.loadFromFile("assets\\background.jpg"))
+		{
+			std::cout << "Error while loading background.jpg" << std::endl;
+			return false;
+		}
+
+		if (!m_font.loadFromFile("assets\\arial.ttf"))
+			{
+				std::cout << "Error while loading arial.ttf" << std::endl;
+				return false;
+			}
+			m_fpsText.setFont(m_font);
+			
+		m_spriteBackground.setTexture(m_textureBackground);
+
+		if (!m_ship.Setup(100, 100))
+			return false;
 
 		for (int i = 0; i < n; i++)
 		{
@@ -76,6 +95,9 @@ namespace ac
 	void Game::LifeCycle()
 	{
 		sf::Clock clock;
+
+
+
 		m_window.setFramerateLimit(60);
 		while (m_window.isOpen())
 		{
@@ -85,8 +107,31 @@ namespace ac
 				if (event.type == sf::Event::Closed)
 					m_window.close();
 			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				m_ship.setVelocity(0.01);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				m_ship.setVelocity(-0.01);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			{
+				m_ship.Rotate(-1);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			{
+				m_ship.Rotate(1);
+			}
+	
+
 			float dt = clock.getElapsedTime().asSeconds();
 			clock.restart();
+
+			m_fpsText.setString(std::to_string(1 / dt));
+			
+			m_ship.Move();
 
 			for (int i = 0; i < m_n; i++)
 				m_c[i].Move(dt);
@@ -100,6 +145,9 @@ namespace ac
 						m_c[i].HandleCollision(m_c[j], i, j);
 
 			m_window.clear();
+			m_window.draw(m_spriteBackground);
+			m_window.draw(m_ship.Get());
+			m_window.draw(m_fpsText);
 			for (int i = 0; i < m_n; i++)
 				m_window.draw(m_c[i].Get());
 			m_window.display();

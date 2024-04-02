@@ -4,9 +4,9 @@
 int main()
 {
 
-	ac::Game game(1000, 600, "!GAME!");
+	ac::Game game(1920, 1080, "!GAME!");
 	// int n = rand() % 6 + 4;
-	int n = 300;
+	int n = 5;
 	game.Setup(n);
 	game.LifeCycle();
 	return 0;

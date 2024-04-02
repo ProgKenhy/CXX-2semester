@@ -10,7 +10,7 @@ namespace ac
 		float m_x, m_y;
 		float m_vx;
 		float m_vy;
-		bool* m_col_is_handling;
+		bool *m_col_is_handling;
 		sf::CircleShape m_shape;
 
 	public:
