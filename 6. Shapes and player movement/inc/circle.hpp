@@ -5,20 +5,21 @@ namespace ac
 {
 	class Circle
 	{
+		int m_n;
 		float m_r;
 		float m_x, m_y;
 		float m_vx;
 		float m_vy;
-		float m_alfa;
+		bool* m_col_is_handling;
 		sf::CircleShape m_shape;
 
 	public:
 		Circle() = default;
-		Circle(float x, float y, float r, float vx, float vy);
-		void Setup(float x, float y, float r, float vx, float vy);
+		Circle(float x, float y, float r, float vx, float vy, int n);
+		void Setup(float x, float y, float r, float vx, float vy, int n);
 		void Move(float dt);
 		bool Circle::CheckCollision(Circle &c2);
-		void HandleCollision(Circle &c2);
+		void HandleCollision(Circle &c2, int i, int j);
 		sf::CircleShape Get();
 		float X() { return m_x; }
 		float Y() { return m_y; }

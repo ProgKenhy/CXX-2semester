@@ -1,6 +1,5 @@
 #include <game.hpp>
 
-
 namespace ac
 {
 	const float pi = acos(-1);
@@ -19,31 +18,28 @@ namespace ac
 		m_n = n;
 		srand(time(0));
 		m_c = new Circle[m_n];
+
 		for (int i = 0; i < n; i++)
 		{
 			int r = rand() % 100 + 1;
 			int x = rand() % (m_width - 2 * r) + r;
 			int y = rand() % (m_height - 2 * r) + r;
-			int vx = rand() % 10+50;
-			int vy = rand() % 10+50;
-			//int vx = 0;
-			//int vy = 0;
-			m_c[i].Setup(x, y, r, vx, vy);
+			int vx = rand() % 10 + 50;
+			int vy = rand() % 10 + 50;
+
+			m_c[i].Setup(x, y, r, vx, vy, n);
+
 			for (int j = 0; j < i; j++)
 			{
 				if ((m_c[i].CheckCollision(m_c[j])))
 				{
-					while (m_c[i].CheckCollision(m_c[j]))
-					{
-						r = rand() % 100 + 1;
-						x = rand() % (m_width - 2 * r) + r;
-						y = rand() % (m_height - 2 * r) + r;
-						m_c[i].Setup(x, y, r, vx, vy);
-					}
+					r = rand() % 100 + 1;
+					x = rand() % (m_width - 2 * r) + r;
+					y = rand() % (m_height - 2 * r) + r;
+					m_c[i].Setup(x, y, r, vx, vy, n);
 					j = -1;
 				}
 			}
-			
 		}
 	}
 
@@ -97,16 +93,12 @@ namespace ac
 
 			for (int i = 0; i < m_n; i++)
 				TouchBorder(m_c[i]);
+
 			for (int i = 0; i < m_n; i++)
-			{
 				for (int j = i + 1; j < m_n; j++)
-				{
 					if (m_c[i].CheckCollision(m_c[j]))
-					{
-						m_c[i].HandleCollision(m_c[j]);
-					}
-				}
-			}
+						m_c[i].HandleCollision(m_c[j], i, j);
+
 			m_window.clear();
 			for (int i = 0; i < m_n; i++)
 				m_window.draw(m_c[i].Get());

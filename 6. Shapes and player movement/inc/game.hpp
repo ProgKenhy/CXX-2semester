@@ -13,6 +13,7 @@ namespace ac
 		std::string m_capture;
 		Circle *m_c;
 		int m_n;
+		
 		sf::RenderWindow m_window;
 		sf::ContextSettings m_settings;
 
@@ -22,5 +23,6 @@ namespace ac
 		bool Game::CheckCollision(const Circle &other);
 		void TouchBorder(Circle &obj);
 		void LifeCycle();
+		int N() {return m_n ;}
 	};
 }
