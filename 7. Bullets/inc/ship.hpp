@@ -34,7 +34,7 @@ namespace ac
 		bool IsBulletHit(Circle& c, int i) {return m_bullet[i].CheckCollision(c); }
 		void HandleHit(int i) { m_bullet[i].HandleCollision(); }
 		void TouchBorder(int width, int height);
-
 		int GetNumberOfMaxBullets() {return number_of_max_bullets;}
+		~Ship() { delete[] m_bullet; }
 	};
 }

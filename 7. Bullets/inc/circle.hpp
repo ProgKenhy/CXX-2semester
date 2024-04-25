@@ -34,6 +34,6 @@ namespace ac
 		void VY(float vy) { m_vy = vy; }
 		bool TouchBorder(int width, int height, float dt);
 		void Deleting();
-		~Circle() { delete m_col_is_handling; }
+		~Circle() { delete[] m_col_is_handling; }
 	};
 }
