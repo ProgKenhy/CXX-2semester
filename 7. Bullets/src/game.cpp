@@ -127,11 +127,11 @@ namespace ac
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 			{
-				m_ship.setVelocity(0.1);
+				m_ship.setVelocity(10);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			{
-				m_ship.setVelocity(-0.1);
+				m_ship.setVelocity(-10);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
@@ -141,15 +141,15 @@ namespace ac
 			{
 				m_ship.Rotate(2);
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (bullet_timeout>1))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (bullet_timeout > 1))
 			{
 				m_ship.Attack();
 				bullet_timeout = 0;
 				bullet_timeout_clock.restart();
 			}
 
-			
-			 
+
+
 
 			float dt = clock.getElapsedTime().asSeconds();
 			clock.restart();
@@ -161,25 +161,39 @@ namespace ac
 
 			for (int i = 0; i < m_n; i++)
 			{
-				if(!TouchBorder(m_c[i], dt))
+				if (!TouchBorder(m_c[i], dt))
 					m_c[i].Move(dt);
 
 
 			}
+
+
+			for (int i = 0; i < m_ship.GetNumberOfMaxBullets(); i++)
+				for (int j = 0; j < m_n; j++)
+					if (m_ship.IsBulletHit(m_c[j], i))
+					{
+						m_ship.HandleHit(i);
+						m_c[j].Deleting();
+					}
 				
 
 			for (int i = 0; i < m_n; i++)
 				for (int j = i + 1; j < m_n; j++)
 					if (m_c[i].CheckCollision(m_c[j]))
 						m_c[i].HandleCollision(m_c[j], i, j);
-
+					
+	
+					
 			m_window.clear();
 			m_window.draw(m_spriteBackground);
 
 			for (int i = 0; i < m_ship.GetNumberOfMaxBullets(); i++)
 				m_window.draw(m_ship.GetBullet(i));
+		
 				
 			m_window.draw(m_ship.Get());
+			m_ship.TouchBorder(m_width, m_height);
+
 			m_window.draw(m_fpsText);
 			for (int i = 0; i < m_n; i++)
 				m_window.draw(m_c[i].Get());

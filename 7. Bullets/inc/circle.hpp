@@ -25,10 +25,13 @@ namespace ac
 		float Y() { return m_y; }
 		void X(float x) { m_x = x; }
 		void Y(float y) { m_y = y; }
+
 		float VX() { return m_vx; }
 		float VY() { return m_vy; }
 		float R() { return m_r; }
 		void VX(float vx) { m_vx = vx; }
 		void VY(float vy) { m_vy = vy; }
+		void Deleting();
+		~Circle() { delete m_col_is_handling; }
 	};
 }

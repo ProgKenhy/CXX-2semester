@@ -42,23 +42,23 @@ namespace ac
 		}
 		return false;
 	}
-	void Circle::HandleCollision(Circle &c2, int i, int j)
+	void Circle::HandleCollision(Circle& c2, int i, int j)
 	{
 
 		float distance = sqrt(pow((m_x - c2.m_x), 2) + pow((m_y - c2.m_y), 2));
-			if (distance < m_r + c2.m_r)
-			{
-				float offset = m_r + c2.m_r - distance;
-				float directionX = (c2.m_x - m_x) / distance;
-				float directionY = (c2.m_y - m_y) / distance;
-				c2.m_x += directionX * offset / 2;
-				c2.m_y += directionY * offset / 2;
-				m_x -= directionX * offset / 2;
-				m_y -= directionY * offset / 2;
-			}
+		if (distance < m_r + c2.m_r)
+		{
+			float offset = m_r + c2.m_r - distance;
+			float directionX = (c2.m_x - m_x) / distance;
+			float directionY = (c2.m_y - m_y) / distance;
+			c2.m_x += directionX * offset / 2;
+			c2.m_y += directionY * offset / 2;
+			m_x -= directionX * offset / 2;
+			m_y -= directionY * offset / 2;
+		}
 		if (m_col_is_handling[i] && m_col_is_handling[j])
 		{
-			
+
 			m_col_is_handling[i] = false;
 			m_col_is_handling[j] = false;
 
@@ -88,10 +88,16 @@ namespace ac
 			c2.m_vx = v2x_s * cos(beta) + v2y_s * sin(beta);
 			c2.m_vy = -v2x_s * sin(beta) + v2y_s * cos(beta);
 		}
+
 		else
 		{
 			m_col_is_handling[i] = true;
 			m_col_is_handling[j] = true;
 		}
+	}
+	void Circle::Deleting()
+	{
+		m_r = 0;
+		m_shape.setRadius(0);
 	}
 }

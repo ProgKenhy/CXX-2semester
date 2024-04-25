@@ -14,6 +14,7 @@ namespace ac
 		m_r = r;
 		m_vx = vx;
 		m_vy = vy;
+		is_first_collision = false;
 		m_shape.setOrigin(m_r, m_r);
 		m_shape.setRadius(m_r);
 		m_shape.setPosition(m_x, m_y);
@@ -30,29 +31,24 @@ namespace ac
 		m_shape.setPosition(m_x, m_y);
 
 	}
-	bool Bullet::CheckCollision(Bullet& c2)
+	bool Bullet::CheckCollision(Circle& c2)
 	{
-		float distance = sqrt(pow((m_x - c2.m_x), 2) + pow((m_y - c2.m_y), 2));
-		if (distance <= m_r + c2.m_r)
+		if (is_first_collision == false)
 		{
-			return true;
+			float distance = sqrt(pow((m_x - c2.X()), 2) + pow((m_y - c2.Y()), 2));
+			if (distance <= m_r + c2.R())
+			{
+				return true;
+			}
 		}
 		return false;
 	}
-	void Bullet::HandleCollision(Bullet& c2, int i, int j)
+	void Bullet::HandleCollision()
 	{
+		m_r = 0;
+		m_shape.setRadius(0);
+		is_first_collision = true;
 
-		float distance = sqrt(pow((m_x - c2.m_x), 2) + pow((m_y - c2.m_y), 2));
-		if (distance < m_r + c2.m_r)
-		{
-			float offset = m_r + c2.m_r - distance;
-			float directionX = (c2.m_x - m_x) / distance;
-			float directionY = (c2.m_y - m_y) / distance;
-			c2.m_x += directionX * offset / 2;
-			c2.m_y += directionY * offset / 2;
-			m_x -= directionX * offset / 2;
-			m_y -= directionY * offset / 2;
-		}
 	}
 
 
@@ -60,4 +56,6 @@ namespace ac
 	{
 		return m_shape;
 	}
+
+
 }

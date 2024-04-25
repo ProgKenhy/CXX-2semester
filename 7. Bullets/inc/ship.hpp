@@ -10,8 +10,9 @@ namespace ac
 	{
 		const int m_bulletR = 10;
 		float m_v_bullet = 400;
-		const int number_of_max_bullets = 3;
+		const int number_of_max_bullets = 30;
 		int current_bullet;
+
 
 		float m_x, m_y;
 		float m_alpha;
@@ -30,6 +31,9 @@ namespace ac
 		sf::Sprite Get(){ return m_spriteShip; }
 		void Attack();
 		sf::CircleShape GetBullet(int i) { return m_bullet[i].Get(); };
+		bool IsBulletHit(Circle& c, int i) {return m_bullet[i].CheckCollision(c); }
+		void HandleHit(int i) { m_bullet[i].HandleCollision(); }
+		void TouchBorder(int width, int height);
 
 		int GetNumberOfMaxBullets() {return number_of_max_bullets;}
 	};

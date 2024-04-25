@@ -1,15 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <circle.hpp>
 
 namespace ac
 {
-	class Bullet
+	class Bullet : public Circle
 	{
 		float m_r;
 		float m_x, m_y;
 		float m_vx;
 		float m_vy;
 		sf::CircleShape m_shape;
+		bool is_first_collision;
 
 
 	public:
@@ -17,8 +19,8 @@ namespace ac
 		Bullet(float x, float y, float r, float vx, float vy);
 		void Setup(float x, float y, float r, float vx, float vy);
 		void Move(float dt);
-		bool CheckCollision(Bullet& c2);
-		void HandleCollision(Bullet& c2, int i, int j);
+		bool CheckCollision(Circle& c2);
+		void HandleCollision();
 		sf::CircleShape Get();
 		float X() { return m_x; }
 		float Y() { return m_y; }

@@ -19,6 +19,7 @@ namespace ac
 		m_v = 0;
 		current_bullet = 0;
 
+
 		m_bullet = new Bullet[number_of_max_bullets];
 
 		if (!m_textureShip.loadFromFile("assets\\falcon.png"))
@@ -48,12 +49,25 @@ namespace ac
 	{
 		for (int i = 0; i < number_of_max_bullets; i++)
 			m_bullet[i].Move(dt);
-
 		float alphaRad = acos(-1) * m_alpha / 180;
-		m_x += m_v * cos(alphaRad);
-		m_y += m_v * sin(alphaRad);
+		m_x += m_v * cos(alphaRad) * dt;
+		m_y += m_v * sin(alphaRad) * dt;
 		m_spriteShip.setPosition(m_x, m_y);
+		
 	}
+
+	void Ship::TouchBorder(int width, int height)
+	{
+		if (m_x > width)
+			m_x = 0;
+		if (m_x < 0)
+			m_x = width;
+		if (m_y > height)
+			m_y = 0;
+		if (m_y < 0)
+			m_y = height;
+	}
+
 
 
 
@@ -77,13 +91,7 @@ namespace ac
 			current_bullet = 0;
 	}
 
-	/*int Ship::Get_Number_Current_bullet() 
-	{ 
-		if (current_bullet < number_of_max_bullets - 1)
-			
-		else
-			current_bullet = 0;
-	}*/
+
 
 	};
 

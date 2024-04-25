@@ -8,7 +8,7 @@
 namespace ac
 {
 
-	class Game
+	class Game : public Bullet
 	{
 		int m_width;
 		int m_height;
@@ -33,5 +33,6 @@ namespace ac
 		bool TouchBorder(Circle &obj, float dt);
 		void LifeCycle();
 		int N() { return m_n; }
+		~Game() { delete[] m_c; }
 	};
 }
