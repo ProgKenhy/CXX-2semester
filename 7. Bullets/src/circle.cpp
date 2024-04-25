@@ -17,6 +17,7 @@ namespace ac
 		m_r = r;
 		m_vx = vx;
 		m_vy = vy;
+		bool is_avaible = true;
 		m_shape.setOrigin(m_r, m_r);
 		m_shape.setRadius(m_r);
 		m_shape.setPosition(m_x, m_y);
@@ -24,6 +25,7 @@ namespace ac
 		int green = rand() % 200 + 40;
 		int blue = rand() % 200 + 40;
 		m_shape.setFillColor(sf::Color::Color(red, green, blue, 155));
+
 	}
 
 	void Circle::Move(float dt)
@@ -35,10 +37,13 @@ namespace ac
 	}
 	bool Circle::CheckCollision(Circle &c2)
 	{
-		float distance = sqrt(pow((m_x - c2.m_x), 2) + pow((m_y - c2.m_y), 2));
-		if (distance <= m_r + c2.m_r)
+		if(is_avaible && c2.is_avaible)
 		{
-			return true;
+			float distance = sqrt(pow((m_x - c2.m_x), 2) + pow((m_y - c2.m_y), 2));
+			if (distance <= m_r + c2.m_r)
+			{
+				return true;
+			}
 		}
 		return false;
 	}
@@ -95,9 +100,50 @@ namespace ac
 			m_col_is_handling[j] = true;
 		}
 	}
+
+	bool Circle::TouchBorder(int width, int height, float dt)
+	{
+		float x = m_x;
+		float y = m_y;
+
+		x += m_vx * dt;
+		y += m_vy * dt;
+
+		if (x + m_r >= width)
+		{
+			m_vx = -m_vx;
+			m_x =  width - m_r;
+			return true;
+		}
+		if (x - m_r <= 0)
+		{
+			m_vx = -m_vx;
+			m_x = m_r;
+			return true;
+		}
+		if (y + m_r >= height)
+		{
+			m_vy = -m_vy;
+			m_y = height - m_r;
+			return true;
+		}
+		if (y - m_r <= 0)
+		{
+			m_vy = -m_vy;
+			m_y = m_r;
+			return true;
+		}
+
+		return false;
+	}
+
+
 	void Circle::Deleting()
 	{
 		m_r = 0;
+		is_avaible = false;
 		m_shape.setRadius(0);
 	}
+
+
 }

@@ -14,7 +14,7 @@ namespace ac
 		m_r = r;
 		m_vx = vx;
 		m_vy = vy;
-		is_first_collision = false;
+		is_available = true;
 		m_shape.setOrigin(m_r, m_r);
 		m_shape.setRadius(m_r);
 		m_shape.setPosition(m_x, m_y);
@@ -33,7 +33,7 @@ namespace ac
 	}
 	bool Bullet::CheckCollision(Circle& c2)
 	{
-		if (is_first_collision == false)
+		if (is_available && c2.IS_available())
 		{
 			float distance = sqrt(pow((m_x - c2.X()), 2) + pow((m_y - c2.Y()), 2));
 			if (distance <= m_r + c2.R())
@@ -47,7 +47,7 @@ namespace ac
 	{
 		m_r = 0;
 		m_shape.setRadius(0);
-		is_first_collision = true;
+		is_available = false;
 
 	}
 

@@ -8,7 +8,7 @@
 namespace ac
 {
 
-	class Game : public Bullet
+	class Game 
 	{
 		int m_width;
 		int m_height;

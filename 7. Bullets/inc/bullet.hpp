@@ -11,7 +11,7 @@ namespace ac
 		float m_vx;
 		float m_vy;
 		sf::CircleShape m_shape;
-		bool is_first_collision;
+		bool is_available;
 
 
 	public:

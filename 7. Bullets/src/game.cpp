@@ -43,11 +43,11 @@ namespace ac
 
 		for (int i = 0; i < n; i++)
 		{
-			int r = rand() % 100 + 1;
+			int r = rand() % 90 + 10;
 			int x = rand() % (m_width - 2 * r) + r;
 			int y = rand() % (m_height - 2 * r) + r;
-			int vx = rand() % 10 + 50;
-			int vy = rand() % 10 + 50;
+			int vx = rand() % 10 + 500;
+			int vy = rand() % 10 + 500;
 
 			m_c[i].Setup(x, y, r, vx, vy, n);
 			
@@ -56,7 +56,7 @@ namespace ac
 			{
 				if ((m_c[i].CheckCollision(m_c[j])))
 				{
-					r = rand() % 100 + 1;
+					r = rand() % 90 + 10;
 					x = rand() % (m_width - 2 * r) + r;
 					y = rand() % (m_height - 2 * r) + r;
 					m_c[i].Setup(x, y, r, vx, vy, n);
@@ -66,44 +66,7 @@ namespace ac
 		}
 	}
 
-	bool Game::TouchBorder(Circle &obj, float dt)
-	{
-		float x = obj.X();
-		float y = obj.Y();
-		float r = obj.R();
-		float vx = obj.VX();
-		float vy = obj.VY();
-		x += vx * dt;
-		y += vy * dt;
-
-		if (x + r >= m_width)
-		{
-			obj.VX(-vx);
-			obj.X(m_width - r);
-			return true;
-		}
-		if (x - r <= 0)
-		{
-			obj.VX(-vx);
-			obj.X(r);
-			return true;
-		}
-		if (y + r >= m_height)
-		{
-			obj.VY(-vy);
-			obj.Y(m_height - r);
-			return true;
-		}
-		if (y - r <= 0)
-		{
-			obj.VY(-vy);
-			obj.Y(r);
-			return true;
-		}
-
-		return false;
-	}
-
+	
 	void Game::LifeCycle()
 	{
 		sf::Clock clock;
@@ -125,19 +88,19 @@ namespace ac
 					m_window.close();
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
 				m_ship.setVelocity(10);
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
 				m_ship.setVelocity(-10);
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
 				m_ship.Rotate(-2);
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			{
 				m_ship.Rotate(2);
 			}
@@ -161,7 +124,7 @@ namespace ac
 
 			for (int i = 0; i < m_n; i++)
 			{
-				if (!TouchBorder(m_c[i], dt))
+				if (!m_c[i].TouchBorder(m_width, m_height, dt))
 					m_c[i].Move(dt);
 
 
