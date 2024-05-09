@@ -64,9 +64,11 @@ namespace ac
 				}
 			}
 		}
+		m_SpaceObjects.push_back(new UFO);
+		m_SpaceObjects[0]->Setup(400, 400, 50, 50, "assets//UFO2.png", 0.2f);
 
-		m_ufo.Setup(400, 400, 50, 50, "assets//UFO2.png", 0.2f);
-		m_destroyer.Setup(250, 500, 50, 50, "assets//Destroyer.png", 0.2f);
+		m_SpaceObjects.push_back(new Destroyer);
+		m_SpaceObjects[1]->Setup(250, 500, 50, 50, "assets//Destroyer.png", 0.2f);
 	}
 
 	
@@ -124,6 +126,12 @@ namespace ac
 
 			m_ship.Move(dt);
 
+			for (int i=0; i<m_SpaceObjects.size(); i++)
+			{
+				m_SpaceObjects[i]->Move(dt);
+			}
+			
+
 
 			for (int i = 0; i < m_n; i++)
 			{
@@ -158,8 +166,11 @@ namespace ac
 		
 				
 			m_window.draw(m_ship.Get());
-			m_window.draw(m_ufo.Get());
-			m_window.draw(m_destroyer.Get());
+
+			for (int i = 0; i < m_SpaceObjects.size(); i++)
+			{
+				m_window.draw(m_SpaceObjects[i]->Get());
+			}
 
 			m_ship.TouchBorder(m_width, m_height);
 

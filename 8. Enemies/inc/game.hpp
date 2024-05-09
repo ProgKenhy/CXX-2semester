@@ -27,9 +27,14 @@ namespace ac
 		sf::Sprite m_spriteBackground;
 		sf::Font m_font;
 		sf::Text m_fpsText;
+
 		Ship m_ship;
+
 		UFO m_ufo;
 		Destroyer m_destroyer;
+		std::vector<SpaceObject*> m_SpaceObjects;
+
+
 
 	public:
 		Game(int width, int height, const std::string &capture);
