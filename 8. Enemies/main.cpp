@@ -6,7 +6,7 @@ int main()
 
 	ac::Game game(1920, 1080, "!GAME!");
 	// int n = rand() % 6 + 4;
-	int n = 50;
+	int n = 7;
 	game.Setup(n);
 	game.LifeCycle();
 	return 0;

@@ -5,6 +5,7 @@
 #include <bullet.hpp>
 #include <SpaceObject.hpp>
 #include <UFO.hpp>
+#include <Destroyer.hpp>
 
 namespace ac
 {
@@ -28,6 +29,7 @@ namespace ac
 		sf::Text m_fpsText;
 		Ship m_ship;
 		UFO m_ufo;
+		Destroyer m_destroyer;
 
 	public:
 		Game(int width, int height, const std::string &capture);

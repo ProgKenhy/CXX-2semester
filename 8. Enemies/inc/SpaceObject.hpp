@@ -16,7 +16,7 @@ namespace ac
 
 	public:
 		SpaceObject() = default;
-		bool Setup(float x, float y, /*float vx, float vy,*/ const std::string& texturePath, float scaleFactor);
+		bool Setup(float x, float y, float vx, float vy, const std::string& texturePath, float scaleFactor);
 		sf::Sprite Get() { return m_spriteShip; }
 		void Move(float dt);
 		virtual void Attack() = 0;

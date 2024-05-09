@@ -4,12 +4,12 @@ namespace ac
 {
 
 
-		bool SpaceObject::Setup(float x, float y,/* float vx, float vy, */const std::string& texturePath, float scaleFactor)
+		bool SpaceObject::Setup(float x, float y, float vx, float vy, const std::string& texturePath, float scaleFactor)
 		{
 			m_x = x;
 			m_y = y;
-		/*	m_vx = vx;
-			m_vy = vy;*/
+			m_vx = vx;
+			m_vy = vy;
 
 			if (!m_textureShip.loadFromFile(texturePath))
 			{

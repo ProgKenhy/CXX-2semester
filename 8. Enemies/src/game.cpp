@@ -65,7 +65,8 @@ namespace ac
 			}
 		}
 
-		m_ufo.Setup(400, 400, "assets//UFO.png", 1.0f);
+		m_ufo.Setup(400, 400, 50, 50, "assets//UFO2.png", 0.2f);
+		m_destroyer.Setup(250, 500, 50, 50, "assets//Destroyer.png", 0.2f);
 	}
 
 	
@@ -157,6 +158,9 @@ namespace ac
 		
 				
 			m_window.draw(m_ship.Get());
+			m_window.draw(m_ufo.Get());
+			m_window.draw(m_destroyer.Get());
+
 			m_ship.TouchBorder(m_width, m_height);
 
 			m_window.draw(m_fpsText);
