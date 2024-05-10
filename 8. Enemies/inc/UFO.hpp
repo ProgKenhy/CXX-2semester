@@ -9,12 +9,12 @@ namespace ac
 		UFO() = default;
 		virtual ~UFO() {}
 
-		void Attack()
+		void Attack() override
 		{
 			std::cout << "UFO Attack" << std::endl;
 		}
 
-		void SpecialAbility()
+		void SpecialAbility() override
 		{
 			std::cout << "UFO Special Ability" << std::endl;
 		}

@@ -42,6 +42,10 @@ namespace ac
 		bool TouchBorder(Circle &obj, float dt);
 		void LifeCycle();
 		int N() { return m_n; }
-		~Game() { delete[] m_c; }
+		~Game() {
+			delete[] m_c; 
+			for (int i = 0; i < m_SpaceObjects.size(); i++)
+				delete m_SpaceObjects[i];
+		}
 	};
 }

@@ -9,12 +9,12 @@ namespace ac
 		Destroyer() = default;
 		virtual ~Destroyer() {}
 
-		void Attack()
+		void Attack() override
 		{
 			std::cout << "Destroyer Attack" << std::endl;
 		}
 
-		void SpecialAbility()
+		void SpecialAbility() override
 		{
 			std::cout << "Destroyer Special Ability" << std::endl;
 		}

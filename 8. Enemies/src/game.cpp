@@ -177,9 +177,8 @@ namespace ac
 			m_window.draw(m_fpsText);
 			for (int i = 0; i < m_n; i++)
 				m_window.draw(m_c[i].Get());
-			
-			
 			m_window.display();
 		}
 	}
+
 }

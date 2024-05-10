@@ -8,6 +8,7 @@ namespace ac
 {
 	class SpaceObject
 	{
+	protected:
 		float m_x, m_y;
 		float m_vx, m_vy;
 		float m_r;
@@ -16,6 +17,7 @@ namespace ac
 
 	public:
 		SpaceObject() = default;
+		virtual ~SpaceObject() {};
 		bool Setup(float x, float y, float vx, float vy, const std::string& texturePath, float scaleFactor);
 		sf::Sprite Get() { return m_spriteShip; }
 		void Move(float dt);
