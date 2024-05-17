@@ -6,6 +6,9 @@
 #include <SpaceObject.hpp>
 #include <UFO.hpp>
 #include <Destroyer.hpp>
+#include <Enemies.hpp>
+#include <comet.hpp>
+#include <asteroid.hpp>
 
 namespace ac
 {
@@ -32,7 +35,10 @@ namespace ac
 
 		UFO m_ufo;
 		Destroyer m_destroyer;
+		Comet m_comet;
+		Asteroid m_asteroid;
 		std::vector<SpaceObject*> m_SpaceObjects;
+		std::vector<Enemies*> m_Enemies;
 
 
 
@@ -46,6 +52,8 @@ namespace ac
 			delete[] m_c; 
 			for (int i = 0; i < m_SpaceObjects.size(); i++)
 				delete m_SpaceObjects[i];
+			for (int i = 0; i < m_Enemies.size(); i++)
+				delete m_Enemies[i];
 		}
 	};
 }

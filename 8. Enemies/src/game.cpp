@@ -69,6 +69,14 @@ namespace ac
 
 		m_SpaceObjects.push_back(new Destroyer);
 		m_SpaceObjects[1]->Setup(250, 500, 50, 50, "assets//Destroyer.png", 0.2f);
+
+		m_Enemies.push_back(new Asteroid);
+		m_Enemies[0]->Setup(400, 200, 50, 50, "assets//UFO2.png", 0.2f);
+
+		m_Enemies.push_back(new Comet);
+		m_Enemies[0]->Setup(400, 700, 50, 50, "assets//UFO2.png", 0.2f);
+
+
 	}
 
 	
@@ -130,6 +138,11 @@ namespace ac
 			{
 				m_SpaceObjects[i]->Move(dt);
 			}
+
+			for (int i = 0; i < m_Enemies.size(); i++)
+			{
+				m_Enemies[i]->Move(dt);
+			}
 			
 
 
@@ -137,8 +150,6 @@ namespace ac
 			{
 				if (!m_c[i].TouchBorder(m_width, m_height, dt))
 					m_c[i].Move(dt);
-
-
 			}
 
 
@@ -170,6 +181,11 @@ namespace ac
 			for (int i = 0; i < m_SpaceObjects.size(); i++)
 			{
 				m_window.draw(m_SpaceObjects[i]->Get());
+			}
+
+			for (int i = 0; i < m_Enemies.size(); i++)
+			{
+				m_window.draw(m_Enemies[i]->Get());
 			}
 
 			m_ship.TouchBorder(m_width, m_height);

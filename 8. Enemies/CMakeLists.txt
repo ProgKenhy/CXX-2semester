@@ -22,8 +22,11 @@ add_executable("${PROJECT_NAME}" main.cpp inc/game.hpp src/game.cpp
 								 inc/ship.hpp src/ship.cpp
 								 inc/bullet.hpp src/bullet.cpp
 								 inc/SpaceObject.hpp src/SpaceObject.cpp
-								 inc/UFO.hpp src/UFO.cpp
-								 inc/Destroyer.hpp src/Destroyer.cpp)
+								 inc/UFO.hpp
+								 inc/Destroyer.hpp
+								 inc/Enemies.hpp src/Enemies.cpp
+								 inc/asteroid.hpp
+								 inc/comet.hpp)
 								 
 											
 target_link_libraries("${PROJECT_NAME}" 
