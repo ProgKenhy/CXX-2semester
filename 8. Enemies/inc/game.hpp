@@ -21,6 +21,7 @@ namespace ac
 		Circle *m_c;
 		int m_n;
 		float bullet_timeout = 0;
+		float enemies_timeout = 0;
 
 
 		sf::RenderWindow m_window;

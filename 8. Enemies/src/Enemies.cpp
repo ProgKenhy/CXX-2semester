@@ -31,7 +31,6 @@ namespace ac
 
 	void Enemies::Move(float dt)
 	{
-		m_x += m_vx * dt;
 		m_y += m_vy * dt;
 		m_spriteShip.setPosition(m_x, m_y);
 	}

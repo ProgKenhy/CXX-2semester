@@ -70,11 +70,13 @@ namespace ac
 		m_SpaceObjects.push_back(new Destroyer);
 		m_SpaceObjects[1]->Setup(250, 500, 50, 50, "assets//Destroyer.png", 0.2f);
 
+
+
 		m_Enemies.push_back(new Asteroid);
-		m_Enemies[0]->Setup(400, 200, 50, 50, "assets//UFO2.png", 0.2f);
+		m_Enemies[0]->Setup(400, 200, 50, 50, "assets//asteroid2.png", 0.2f);
 
 		m_Enemies.push_back(new Comet);
-		m_Enemies[0]->Setup(400, 700, 50, 50, "assets//UFO2.png", 0.2f);
+		m_Enemies[1]->Setup(400, 250, 50, 50, "assets//comet.png", 0.2f);
 
 
 	}
@@ -84,6 +86,7 @@ namespace ac
 	{
 		sf::Clock clock;
 		sf::Clock bullet_timeout_clock;
+		sf::Clock enemies_timeout_clock;
 
 		
 		
@@ -93,6 +96,8 @@ namespace ac
 		{
 
 			bullet_timeout += bullet_timeout_clock.getElapsedTime().asSeconds();
+			enemies_timeout += enemies_timeout_clock.getElapsedTime().asSeconds();
+
 
 			sf::Event event;
 			while (m_window.pollEvent(event))
@@ -122,8 +127,21 @@ namespace ac
 				m_ship.Attack();
 				bullet_timeout = 0;
 				bullet_timeout_clock.restart();
+
+				
 			}
 
+			if (enemies_timeout > 1)
+			{
+				m_Enemies.push_back(new Asteroid);
+				m_Enemies[0]->Setup(400, 200, 50, 50, "assets//asteroid2.png", 0.2f);
+
+				m_Enemies.push_back(new Comet);
+				m_Enemies[1]->Setup(400, 250, 50, 50, "assets//comet.png", 0.2f);
+
+				enemies_timeout = 0;
+				enemies_timeout_clock.restart();
+			}
 
 
 
