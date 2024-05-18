@@ -220,6 +220,26 @@ namespace ac
 				m_window.draw(m_c[i].Get());
 			m_window.display();
 		}
+
+		while (!is_not_game_over)
+		{
+			sf::Event event;
+			while (m_window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					m_window.close();
+			}
+			m_window.clear();
+			
+			m_fpsText.setString("Game over!");
+			
+
+			m_fpsText.setColor(sf::Color(255, 255, 255));
+			m_window.draw(m_fpsText);
+			m_window.display();
+			
+		}
+
 	}
 
 }

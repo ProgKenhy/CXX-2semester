@@ -32,6 +32,7 @@ namespace ac
 		sf::Sprite m_spriteBackground;
 		sf::Font m_font;
 		sf::Text m_fpsText;
+		sf::Text m_gameOver;
 
 		Ship m_ship;
 
