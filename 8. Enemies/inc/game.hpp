@@ -20,8 +20,9 @@ namespace ac
 		std::string m_capture;
 		Circle *m_c;
 		int m_n;
-		float bullet_timeout = 0;
-		float enemies_timeout = 0;
+		float bullet_timeout = 0.3f;
+		float enemies_timeout = 50;
+		bool is_not_game_over = true;
 
 
 		sf::RenderWindow m_window;

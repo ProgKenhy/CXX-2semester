@@ -9,9 +9,9 @@ namespace ac
 	class SpaceObject
 	{
 	protected:
-		float m_x, m_y;
-		float m_vx, m_vy;
-		float m_r;
+		float m_x = 0, m_y = 0;
+		float m_vx = 0, m_vy = 0;
+		float m_r = 0;
 		sf::Texture m_textureShip;
 		sf::Sprite m_spriteShip;
 

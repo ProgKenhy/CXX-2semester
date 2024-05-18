@@ -4,7 +4,7 @@
 
 namespace ac
 {
-	class Bullet : public Circle
+	class Bullet 
 	{
 		float m_r;
 		float m_x, m_y;

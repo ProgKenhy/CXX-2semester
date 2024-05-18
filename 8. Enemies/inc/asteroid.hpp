@@ -9,12 +9,12 @@ namespace ac
 		Asteroid() = default;
 		virtual ~Asteroid() {}
 
-		void Attack() override
+		virtual void Attack() override
 		{
 			std::cout << "Asteroid Attack" << std::endl;
 		}
 
-		void SpecialAbility() override
+		virtual void SpecialAbility() override
 		{
 			std::cout << "Asteroid Special Ability" << std::endl;
 		}

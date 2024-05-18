@@ -1,4 +1,5 @@
 #include <Enemies.hpp>
+#include <iostream>
 
 namespace ac
 {
@@ -31,8 +32,20 @@ namespace ac
 
 	void Enemies::Move(float dt)
 	{
+		m_x += m_vx * dt;
 		m_y += m_vy * dt;
 		m_spriteShip.setPosition(m_x, m_y);
+	}
+
+	bool Enemies::CheckCollisionEnemies(Ship& c2)
+	{
+		float distance = sqrt(pow((m_x - c2.X()), 2) + pow((m_y - c2.Y()), 2));
+		if (distance < m_r + c2.R() - 15)
+		{
+			return true;
+		}
+		return false;
+		std::cout << m_r << std::endl;
 	}
 
 

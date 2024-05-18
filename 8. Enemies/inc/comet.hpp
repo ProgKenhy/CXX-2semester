@@ -9,12 +9,12 @@ namespace ac
 		Comet() = default;
 		virtual ~Comet() {}
 
-		void Attack() override
+		virtual void Attack() override
 		{
 			std::cout << "Comet Attack" << std::endl;
 		}
 
-		void SpecialAbility() override
+		virtual void SpecialAbility() override
 		{
 			std::cout << "Comet Special Ability" << std::endl;
 		}

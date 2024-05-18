@@ -10,13 +10,13 @@ namespace ac
 		const int m_bulletR = 10;
 		float m_v_bullet = 400;
 		const int number_of_max_bullets = 30;
-		int current_bullet;
+		int current_bullet = 0;
 
 
-		float m_x, m_y;
-		float m_alpha;
-		float m_v;
-		float m_r;
+		float m_x = 0, m_y = 0;
+		float m_alpha = 0;
+		float m_v = 0;
+		float m_r = 0;
 		float m_scaleFactor = 0.2f;
 		sf::Texture m_textureShip;
 		sf::Sprite m_spriteShip;
@@ -27,9 +27,9 @@ namespace ac
 		Ship() = default;
 		Ship(float x, float y);
 		bool Setup(float x, float y);
-		void setVelocity(float dv);
+		void setVelocity(float dv, float dt);
 		void Move(float dt);
-		void Rotate(float dalpha);
+		void Rotate(float dalpha, float dt);
 		sf::Sprite Get(){ return m_spriteShip; }
 		void Attack();
 		sf::CircleShape GetBullet(int i) { return m_bullet[i].Get(); };
@@ -38,5 +38,8 @@ namespace ac
 		void TouchBorder(int width, int height);
 		int GetNumberOfMaxBullets() {return number_of_max_bullets;}
 		~Ship() { delete[] m_bullet; }
+		int X() { return m_x; };
+		int Y() { return m_y; };
+		int R() { return m_r; };
 	};
 }

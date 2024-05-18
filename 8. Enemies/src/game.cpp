@@ -73,10 +73,13 @@ namespace ac
 
 
 		m_Enemies.push_back(new Asteroid);
-		m_Enemies[0]->Setup(400, 200, 50, 50, "assets//asteroid2.png", 0.2f);
+		m_Enemies.push_back(new Asteroid);
+		m_Enemies.push_back(new Asteroid);
+		m_Enemies.push_back(new Asteroid);
+		m_Enemies.push_back(new Asteroid);
 
 		m_Enemies.push_back(new Comet);
-		m_Enemies[1]->Setup(400, 250, 50, 50, "assets//comet.png", 0.2f);
+
 
 
 	}
@@ -92,11 +95,10 @@ namespace ac
 		
 
 		m_window.setFramerateLimit(60);
-		while (m_window.isOpen())
+		while (m_window.isOpen() && is_not_game_over)
 		{
-
-			bullet_timeout += bullet_timeout_clock.getElapsedTime().asSeconds();
-			enemies_timeout += enemies_timeout_clock.getElapsedTime().asSeconds();
+			float dt = clock.getElapsedTime().asSeconds();
+			clock.restart();
 
 
 			sf::Event event;
@@ -108,45 +110,44 @@ namespace ac
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
-				m_ship.setVelocity(10);
+				m_ship.setVelocity(1000, dt);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
-				m_ship.setVelocity(-10);
+				m_ship.setVelocity(-1000, dt);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
-				m_ship.Rotate(-2);
+				m_ship.Rotate(-120, dt);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			{
-				m_ship.Rotate(2);
+				m_ship.Rotate(120, dt);
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (bullet_timeout > 1))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (bullet_timeout_clock.getElapsedTime().asSeconds() > bullet_timeout))
 			{
 				m_ship.Attack();
-				bullet_timeout = 0;
 				bullet_timeout_clock.restart();
 
 				
 			}
 
-			if (enemies_timeout > 1)
+			for (int i = 0; i < m_Enemies.size()-1; i++)
+				if ((m_Enemies[i]->Y()>m_height) || (sf::Keyboard::isKeyPressed(sf::Keyboard::L)))
+				{
+					m_Enemies[i]->Setup(rand() % m_width, -100, 0, rand()%100+100, "assets//asteroid2.png", 0.2f);
+				}
+
+			if ((m_Enemies[m_Enemies.size()-1]->Y() > m_height) || (sf::Keyboard::isKeyPressed(sf::Keyboard::L)))
 			{
-				m_Enemies.push_back(new Asteroid);
-				m_Enemies[0]->Setup(400, 200, 50, 50, "assets//asteroid2.png", 0.2f);
-
-				m_Enemies.push_back(new Comet);
-				m_Enemies[1]->Setup(400, 250, 50, 50, "assets//comet.png", 0.2f);
-
-				enemies_timeout = 0;
-				enemies_timeout_clock.restart();
+				m_Enemies[m_Enemies.size()-1]->Setup(m_width + 100, -100, -100, 100, "assets//comet.png", 0.2f);
 			}
 
 
 
-			float dt = clock.getElapsedTime().asSeconds();
-			clock.restart();
+
+
+			
 
 			m_fpsText.setString(std::to_string(1 / dt));
 
@@ -184,6 +185,12 @@ namespace ac
 				for (int j = i + 1; j < m_n; j++)
 					if (m_c[i].CheckCollision(m_c[j]))
 						m_c[i].HandleCollision(m_c[j], i, j);
+
+			for (int i = 0; i < m_Enemies.size(); i++)				
+				if (m_Enemies[i]->CheckCollisionEnemies(m_ship))
+					is_not_game_over = false;
+				
+			
 					
 	
 					

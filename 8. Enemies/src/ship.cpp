@@ -45,9 +45,9 @@ namespace ac
 
 
 
-	void Ship::setVelocity(float dv)
+	void Ship::setVelocity(float dv, float dt)
 	{
-		m_v += dv;
+		m_v += dv * dt;
 	}
 
 
@@ -78,9 +78,9 @@ namespace ac
 
 
 
-	void Ship::Rotate(float dalpha)
+	void Ship::Rotate(float dalpha, float dt)
 	{
-		m_alpha += dalpha;
+		m_alpha += dalpha * dt;
 		m_spriteShip.setRotation(m_alpha);
 	}
 
